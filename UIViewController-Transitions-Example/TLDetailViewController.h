@@ -10,7 +10,4 @@
 
 @interface TLDetailViewController : UIViewController
 
-@property (strong, nonatomic) id detailItem;
-
-
 @end

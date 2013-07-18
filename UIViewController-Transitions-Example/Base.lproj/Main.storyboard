@@ -45,6 +45,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="Ah7-4n-0Wa" kind="modal" id="fSy-VZ-XwJ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
