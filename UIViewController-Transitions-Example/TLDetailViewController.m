@@ -29,10 +29,6 @@
 - (void)configureView
 {
     // Update the user interface for the detail item.
-
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
-    }
 }
 
 - (void)viewDidLoad
@@ -46,6 +42,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)doneWasPressed:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

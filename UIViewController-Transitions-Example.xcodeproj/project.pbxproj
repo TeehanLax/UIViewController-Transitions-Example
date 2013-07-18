@@ -461,6 +461,7 @@
 				5E8B4BA21790454A006BFAB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5E8B4BA31790454A006BFAB2 /* Build configuration list for PBXNativeTarget "UIViewController-Transitions-ExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +470,7 @@
 				5E8B4BA51790454A006BFAB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

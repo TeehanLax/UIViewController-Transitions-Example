@@ -10,7 +10,14 @@
 
 #import "TLDetailViewController.h"
 
-@interface TLMasterViewController () {
+@interface TLTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+
+@property (nonatomic, assign, getter = isPresenting) BOOL presenting;
+
+@end
+
+@interface TLMasterViewController () <UIViewControllerTransitioningDelegate>
+{
     NSMutableArray *_objects;
 }
 @end
@@ -32,10 +39,10 @@
     self.navigationItem.rightBarButtonItem = addButton;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self insertNewObject:nil];
 }
 
 - (void)insertNewObject:(id)sender
@@ -85,28 +92,84 @@
     }
 }
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSDate *object = _objects[indexPath.row];
+    TLDetailViewController *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TLDetailViewController"];
+    detailViewController.detailItem = object;
+    
+    detailViewController.transitioningDelegate = self;
+    detailViewController.modalPresentationStyle = UIModalPresentationCustom;
+    
+    [self presentViewController:detailViewController animated:YES completion:nil];
+//    [self.navigationController pushViewController:detailViewController animated:YES];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                   presentingController:(UIViewController *)presenting
+                                                                       sourceController:(UIViewController *)source {
+    
+    TLTransitionAnimator *animator = [TLTransitionAnimator new];
+    //Configure the animator
+    animator.presenting = YES;
+    return animator;
 }
-*/
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    TLTransitionAnimator *animator = [TLTransitionAnimator new];
+    return animator;
+}
+
+
+@end
+
+@implementation TLTransitionAnimator
+
+// This is used for percent driven interactive transitions, as well as for container controllers that have companion animations that might need to
+// synchronize with the main animation.
+- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
+    return 0.5f;
+}
+
+// This method can only  be a nop if the transition is interactive and not a percentDriven interactive transition.
+- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
+    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    CGRect endFrame = CGRectMake(80, 280, 160, 100);//[transitionContext initialFrameForViewController:fromVC];
+    
+    if (self.presenting) {
+//        fromVC.view.frame = endFrame;
+        [transitionContext.containerView addSubview:fromVC.view];
+        
+        UIView *toView = [toVC view];
+        [transitionContext.containerView addSubview:toView];
+        
+        CGRect startFrame = endFrame;
+        startFrame.origin.y -= 1000;
+        toView.frame = startFrame;
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            toView.frame = endFrame;
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:YES];
+        }];
+    }
+    else {
+        UIView *toView = [toVC view];
+//        toView.frame = endFrame;
+        [transitionContext.containerView addSubview:toView];
+        [transitionContext.containerView addSubview:fromVC.view];
+        
+        endFrame.origin.y -= 1000;
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            fromVC.view.frame = endFrame;
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:YES];
+        }];
     }
 }
 
