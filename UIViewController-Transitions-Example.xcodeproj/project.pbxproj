@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E6752691798570100601F42 /* TLTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6752681798570100601F42 /* TLTransitionAnimator.m */; };
 		5E8B4B6F1790454A006BFAB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8B4B6E1790454A006BFAB2 /* Foundation.framework */; };
 		5E8B4B711790454A006BFAB2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8B4B701790454A006BFAB2 /* CoreGraphics.framework */; };
 		5E8B4B731790454A006BFAB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8B4B721790454A006BFAB2 /* UIKit.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E6752671798570100601F42 /* TLTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTransitionAnimator.h; sourceTree = "<group>"; };
+		5E6752681798570100601F42 /* TLTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTransitionAnimator.m; sourceTree = "<group>"; };
 		5E8B4B6B1790454A006BFAB2 /* UIViewController-Transitions-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UIViewController-Transitions-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E8B4B6E1790454A006BFAB2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5E8B4B701790454A006BFAB2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -124,6 +127,8 @@
 				5E8B4B871790454A006BFAB2 /* TLDetailViewController.m */,
 				5E8B4B891790454A006BFAB2 /* Images.xcassets */,
 				5E8B4B751790454A006BFAB2 /* Supporting Files */,
+				5E6752671798570100601F42 /* TLTransitionAnimator.h */,
+				5E6752681798570100601F42 /* TLTransitionAnimator.m */,
 			);
 			path = "UIViewController-Transitions-Example";
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E8B4B851790454A006BFAB2 /* TLMasterViewController.m in Sources */,
+				5E6752691798570100601F42 /* TLTransitionAnimator.m in Sources */,
 				5E8B4B881790454A006BFAB2 /* TLDetailViewController.m in Sources */,
 				5E8B4B7F1790454A006BFAB2 /* TLAppDelegate.m in Sources */,
 				5E8B4B7B1790454A006BFAB2 /* main.m in Sources */,
