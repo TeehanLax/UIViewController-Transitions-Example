@@ -80,13 +80,14 @@
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    CGRect endFrame = CGRectMake(-160, 280, 160, 100);
+    CGRect endFrame = [[transitionContext containerView] bounds];
     
     if (self.presenting)
     {
         [transitionContext.containerView addSubview:fromVC.view];
         
         UIView *toView = [toVC view];
+        endFrame.origin.x -= CGRectGetWidth([[transitionContext containerView] bounds]);
         toView.frame = endFrame;
         [transitionContext.containerView addSubview:toView];
     }
@@ -100,13 +101,13 @@
     
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    CGRect endFrame = CGRectMake(-160, 280, 160, 100);
+    CGRect endFrame = [[transitionContext containerView] bounds];
     
     if (self.presenting)
     {
         UIView *toView = [toVC view];
 
-        endFrame.origin.x += (320) * percentComplete;
+        endFrame.origin.x -= CGRectGetWidth([[transitionContext containerView] bounds]) * (1.0f - percentComplete);
         
         toView.frame = endFrame;
     }
@@ -120,15 +121,12 @@
     
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    CGRect endFrame = CGRectMake(-160, 280, 160, 100);
+    CGRect endFrame = [[transitionContext containerView] bounds];
     
     if (self.presenting)
     {
-        UIView *toView = [toVC view];
-        
-        endFrame.origin.x += 320;
-        
         [UIView animateWithDuration:0.5f animations:^{
+            UIView *toView = [toVC view];
             toView.frame = endFrame;
         } completion:^(BOOL finished) {
             [transitionContext completeTransition:YES];
@@ -145,16 +143,16 @@
     
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    CGRect endFrame = CGRectMake(-160, 280, 160, 100);
+    CGRect endFrame = [[transitionContext containerView] bounds];
     
     if (self.presenting)
     {
         UIView *toView = [toVC view];
         
-        CGRect startFrame = endFrame;
+        endFrame.origin.x -= CGRectGetWidth([[transitionContext containerView] bounds]);
         
         [UIView animateWithDuration:0.5f animations:^{
-            toView.frame = startFrame;
+            toView.frame = endFrame;
         } completion:^(BOOL finished) {
             [transitionContext completeTransition:NO];
         }];
