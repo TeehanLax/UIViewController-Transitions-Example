@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class TLMenuInteractor;
+
 @interface TLMenuViewController : UIViewController
+
+-(id)initWithMenuInteractor:(TLMenuInteractor *)menuInteractor;
+
+@property (nonatomic, readonly) TLMenuInteractor *menuInteractor;
 
 @end

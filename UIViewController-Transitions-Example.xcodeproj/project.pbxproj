@@ -100,6 +100,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E6543B7179DC1DB00ED0C76 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5E8B4B831790454A006BFAB2 /* TLMasterViewController.h */,
+				5E8B4B841790454A006BFAB2 /* TLMasterViewController.m */,
+				5E8B4B861790454A006BFAB2 /* TLDetailViewController.h */,
+				5E8B4B871790454A006BFAB2 /* TLDetailViewController.m */,
+				5E67527117985B6D00601F42 /* TLMenuViewController.h */,
+				5E67527217985B6D00601F42 /* TLMenuViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		5E6543B8179DC1E600ED0C76 /* UIViewController Presentation Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5E6752671798570100601F42 /* TLTransitionAnimator.h */,
+				5E6752681798570100601F42 /* TLTransitionAnimator.m */,
+				5E67527417985FE400601F42 /* TLMenuInteractor.h */,
+				5E67527517985FE400601F42 /* TLMenuInteractor.m */,
+			);
+			name = "UIViewController Presentation Extensions";
+			sourceTree = "<group>";
+		};
 		5E8B4B621790454A006BFAB2 = {
 			isa = PBXGroup;
 			children = (
@@ -139,16 +163,8 @@
 				5E8B4B7D1790454A006BFAB2 /* TLAppDelegate.h */,
 				5E8B4B7E1790454A006BFAB2 /* TLAppDelegate.m */,
 				5E8B4B801790454A006BFAB2 /* Main.storyboard */,
-				5E8B4B831790454A006BFAB2 /* TLMasterViewController.h */,
-				5E8B4B841790454A006BFAB2 /* TLMasterViewController.m */,
-				5E8B4B861790454A006BFAB2 /* TLDetailViewController.h */,
-				5E8B4B871790454A006BFAB2 /* TLDetailViewController.m */,
-				5E67527117985B6D00601F42 /* TLMenuViewController.h */,
-				5E67527217985B6D00601F42 /* TLMenuViewController.m */,
-				5E6752671798570100601F42 /* TLTransitionAnimator.h */,
-				5E6752681798570100601F42 /* TLTransitionAnimator.m */,
-				5E67527417985FE400601F42 /* TLMenuInteractor.h */,
-				5E67527517985FE400601F42 /* TLMenuInteractor.m */,
+				5E6543B7179DC1DB00ED0C76 /* View Controllers */,
+				5E6543B8179DC1E600ED0C76 /* UIViewController Presentation Extensions */,
 				5E8B4B891790454A006BFAB2 /* Images.xcassets */,
 				5E8B4B751790454A006BFAB2 /* Supporting Files */,
 			);

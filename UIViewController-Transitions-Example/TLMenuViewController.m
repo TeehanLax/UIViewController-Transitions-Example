@@ -8,17 +8,19 @@
 
 #import "TLMenuViewController.h"
 
+#import "TLMenuInteractor.h"
+
 @interface TLMenuViewController ()
 
 @end
 
 @implementation TLMenuViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id)initWithMenuInteractor:(TLMenuInteractor *)menuInteractor
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
-        // Custom initialization
+        _menuInteractor = menuInteractor;
     }
     return self;
 }
@@ -28,13 +30,25 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // Just to differentiate use visually
     self.view.backgroundColor = [UIColor orangeColor];
+    
+    // Set up our done button
+    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [doneButton setTitle:@"Dismiss" forState:UIControlStateNormal];
+    [doneButton addTarget:self action:@selector(doneWasPressed:) forControlEvents:UIControlEventTouchUpInside];
+    doneButton.frame = CGRectMake(0, 0, 100, 44);
+    doneButton.center = self.view.center;
+    [self.view addSubview:doneButton];
+    
+    UIScreenEdgePanGestureRecognizer *gestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self.menuInteractor action:@selector(userDidPan:)];
+    gestureRecognizer.edges = UIRectEdgeRight;
+    [self.view addGestureRecognizer:gestureRecognizer];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)doneWasPressed:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 @end

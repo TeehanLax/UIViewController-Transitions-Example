@@ -20,7 +20,7 @@
     NSMutableArray *_objects;
 }
 
-@property (nonatomic, strong) TLMenuInteractor *transition;
+@property (nonatomic, strong) TLMenuInteractor *menuInteractor;
 
 @end
 
@@ -39,9 +39,12 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
-    self.transition = [[TLMenuInteractor alloc] initWithParentViewController:self];
+    self.menuInteractor = [[TLMenuInteractor alloc] initWithParentViewController:self];
     
-    UIScreenEdgePanGestureRecognizer *gestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self.transition action:@selector(userDidPan:)];
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.menuInteractor action:@selector(presentMenu)];
+    self.navigationItem.leftBarButtonItem = menuButton;
+    
+    UIScreenEdgePanGestureRecognizer *gestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self.menuInteractor action:@selector(userDidPan:)];
     gestureRecognizer.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:gestureRecognizer];
 }
