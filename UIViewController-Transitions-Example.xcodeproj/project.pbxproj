@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E6543B2179DAD4100ED0C76 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6543B1179DAD4100ED0C76 /* Reveal.framework */; };
+		5E6543B4179DAD6400ED0C76 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6543B3179DAD6400ED0C76 /* CFNetwork.framework */; };
+		5E6543B6179DAD6900ED0C76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6543B5179DAD6900ED0C76 /* QuartzCore.framework */; };
 		5E6752691798570100601F42 /* TLTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6752681798570100601F42 /* TLTransitionAnimator.m */; };
+		5E67527317985B6D00601F42 /* TLMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E67527217985B6D00601F42 /* TLMenuViewController.m */; };
+		5E67527617985FE400601F42 /* TLMenuInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E67527517985FE400601F42 /* TLMenuInteractor.m */; };
 		5E8B4B6F1790454A006BFAB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8B4B6E1790454A006BFAB2 /* Foundation.framework */; };
 		5E8B4B711790454A006BFAB2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8B4B701790454A006BFAB2 /* CoreGraphics.framework */; };
 		5E8B4B731790454A006BFAB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8B4B721790454A006BFAB2 /* UIKit.framework */; };
@@ -36,8 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E6543B1179DAD4100ED0C76 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		5E6543B3179DAD6400ED0C76 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		5E6543B5179DAD6900ED0C76 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5E6752671798570100601F42 /* TLTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTransitionAnimator.h; sourceTree = "<group>"; };
 		5E6752681798570100601F42 /* TLTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTransitionAnimator.m; sourceTree = "<group>"; };
+		5E67527117985B6D00601F42 /* TLMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMenuViewController.h; sourceTree = "<group>"; };
+		5E67527217985B6D00601F42 /* TLMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMenuViewController.m; sourceTree = "<group>"; };
+		5E67527417985FE400601F42 /* TLMenuInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMenuInteractor.h; sourceTree = "<group>"; };
+		5E67527517985FE400601F42 /* TLMenuInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMenuInteractor.m; sourceTree = "<group>"; };
 		5E8B4B6B1790454A006BFAB2 /* UIViewController-Transitions-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UIViewController-Transitions-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E8B4B6E1790454A006BFAB2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5E8B4B701790454A006BFAB2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -66,9 +78,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E6543B6179DAD6900ED0C76 /* QuartzCore.framework in Frameworks */,
+				5E6543B4179DAD6400ED0C76 /* CFNetwork.framework in Frameworks */,
 				5E8B4B711790454A006BFAB2 /* CoreGraphics.framework in Frameworks */,
 				5E8B4B731790454A006BFAB2 /* UIKit.framework in Frameworks */,
 				5E8B4B6F1790454A006BFAB2 /* Foundation.framework in Frameworks */,
+				5E6543B2179DAD4100ED0C76 /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +122,9 @@
 		5E8B4B6D1790454A006BFAB2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E6543B5179DAD6900ED0C76 /* QuartzCore.framework */,
+				5E6543B3179DAD6400ED0C76 /* CFNetwork.framework */,
+				5E6543B1179DAD4100ED0C76 /* Reveal.framework */,
 				5E8B4B6E1790454A006BFAB2 /* Foundation.framework */,
 				5E8B4B701790454A006BFAB2 /* CoreGraphics.framework */,
 				5E8B4B721790454A006BFAB2 /* UIKit.framework */,
@@ -125,10 +143,14 @@
 				5E8B4B841790454A006BFAB2 /* TLMasterViewController.m */,
 				5E8B4B861790454A006BFAB2 /* TLDetailViewController.h */,
 				5E8B4B871790454A006BFAB2 /* TLDetailViewController.m */,
-				5E8B4B891790454A006BFAB2 /* Images.xcassets */,
-				5E8B4B751790454A006BFAB2 /* Supporting Files */,
+				5E67527117985B6D00601F42 /* TLMenuViewController.h */,
+				5E67527217985B6D00601F42 /* TLMenuViewController.m */,
 				5E6752671798570100601F42 /* TLTransitionAnimator.h */,
 				5E6752681798570100601F42 /* TLTransitionAnimator.m */,
+				5E67527417985FE400601F42 /* TLMenuInteractor.h */,
+				5E67527517985FE400601F42 /* TLMenuInteractor.m */,
+				5E8B4B891790454A006BFAB2 /* Images.xcassets */,
+				5E8B4B751790454A006BFAB2 /* Supporting Files */,
 			);
 			path = "UIViewController-Transitions-Example";
 			sourceTree = "<group>";
@@ -264,7 +286,9 @@
 				5E6752691798570100601F42 /* TLTransitionAnimator.m in Sources */,
 				5E8B4B881790454A006BFAB2 /* TLDetailViewController.m in Sources */,
 				5E8B4B7F1790454A006BFAB2 /* TLAppDelegate.m in Sources */,
+				5E67527617985FE400601F42 /* TLMenuInteractor.m in Sources */,
 				5E8B4B7B1790454A006BFAB2 /* main.m in Sources */,
+				5E67527317985B6D00601F42 /* TLMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,9 +411,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UIViewController-Transitions-Example/UIViewController-Transitions-Example-Prefix.pch";
 				INFOPLIST_FILE = "UIViewController-Transitions-Example/UIViewController-Transitions-Example-Info.plist";
+				OTHER_LDFLAGS = "-ObjC ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -400,9 +429,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UIViewController-Transitions-Example/UIViewController-Transitions-Example-Prefix.pch";
 				INFOPLIST_FILE = "UIViewController-Transitions-Example/UIViewController-Transitions-Example-Info.plist";
+				OTHER_LDFLAGS = "-ObjC ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -7,16 +7,21 @@
 //
 
 #import "TLMasterViewController.h"
+#import "TLMenuViewController.h"
 
 #import "TLDetailViewController.h"
 
 #import "TLTransitionAnimator.h"
+#import "TLMenuInteractor.h"
 
 
 @interface TLMasterViewController () <UIViewControllerTransitioningDelegate>
 {
     NSMutableArray *_objects;
 }
+
+@property (nonatomic, strong) TLMenuInteractor *transition;
+
 @end
 
 @implementation TLMasterViewController
@@ -33,6 +38,12 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    self.transition = [[TLMenuInteractor alloc] initWithParentViewController:self];
+    
+    UIScreenEdgePanGestureRecognizer *gestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self.transition action:@selector(userDidPan:)];
+    gestureRecognizer.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:gestureRecognizer];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -85,31 +96,20 @@
 
 #pragma mark - UIViewControllerTransitioningDelegate Methods
 
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                    presentingController:(UIViewController *)presenting
                                                                        sourceController:(UIViewController *)source {
     
-    if ([presented isKindOfClass:[TLDetailViewController class]]) {
-        TLTransitionAnimator *animator = [TLTransitionAnimator new];
-        //Configure the animator
-        animator.presenting = YES;
-        return animator;
-    }
-    else {
-        return nil;
-    }
+    TLTransitionAnimator *animator = [TLTransitionAnimator new];
+    //Configure the animator
+    animator.presenting = YES;
+    return animator;
 }
 
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    if ([dismissed isKindOfClass:[TLDetailViewController class]]) {
-        TLTransitionAnimator *animator = [TLTransitionAnimator new];
-        return animator;
-    }
-    else {
-        return nil;
-    }
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    TLTransitionAnimator *animator = [TLTransitionAnimator new];
+    return animator;
 }
-
 
 @end
 
