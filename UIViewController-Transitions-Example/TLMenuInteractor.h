@@ -12,10 +12,9 @@
 
 -(id)initWithParentViewController:(UIViewController *)viewController;
 
-@property (nonatomic, assign, getter = isInteractive) BOOL interactive;
 @property (nonatomic, readonly) UIViewController *parentViewController;
 
--(void)userDidPan:(UIScreenEdgePanGestureRecognizer *)recognizer;
--(void)presentMenu;
+-(void)userDidPan:(UIScreenEdgePanGestureRecognizer *)recognizer; // Used as a target for a UIScreenEdgePanGestureRecognizer
+-(void)presentMenu; // Presents the menu non-interactively
 
 @end
