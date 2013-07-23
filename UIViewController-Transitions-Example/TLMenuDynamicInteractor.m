@@ -8,11 +8,16 @@
 
 #import "TLMenuDynamicInteractor.h"
 
-@interface TLMenuDynamicInteractor () <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate, UIViewControllerInteractiveTransitioning>
+@interface TLMenuDynamicInteractor () <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate, UIViewControllerInteractiveTransitioning, UIDynamicAnimatorDelegate>
 
 @property (nonatomic, assign, getter = isInteractive) BOOL interactive;
 @property (nonatomic, assign, getter = isPresenting) BOOL presenting;
+@property (nonatomic, assign, getter = isCompleting) BOOL completing;
 @property (nonatomic, strong) id<UIViewControllerContextTransitioning> transitionContext;
+
+@property (nonatomic, strong) UIDynamicAnimator *animator;
+@property (nonatomic, strong) UICollisionBehavior *collisionBehaviour;
+@property (nonatomic, strong) UIGravityBehavior *gravityBehaviour;
 
 @end
 
@@ -28,6 +33,11 @@
     return self;
 }
 
+/*
+ Note: Unlike when we connect a gesture recognizer to a view via an attachment behaviour,
+ our recognizer is going to remain agnostic to how the view controller is presented. This
+ implementation is identical to the TLMenuInteractor.
+ */
 -(void)userDidPan:(UIScreenEdgePanGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.parentViewController.view];
     CGPoint velocity = [recognizer velocityInView:self.parentViewController.view];
@@ -120,52 +130,95 @@
     self.interactive = NO;
     self.presenting = NO;
     self.transitionContext = nil;
+    
+    [self.animator removeAllBehaviors], self.animator = nil;
 }
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
-    // Used only in non-interactive transitions, despite the documentation
-    return 0.3f;
+    // Instead of using this to animate a transition, we'll use it as an upper-bounds to the UIKit Dynamics simulation elapsedTime.
+    // We'll use 2 seconds.
+    return 2.0f;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
+    self.transitionContext = transitionContext;
+    
     if (self.interactive) {
         // nop as per documentation
     }
     else {
+        // Guaranteed to complete since this is a non-interactive transition
+        self.completing = YES;
+        
         // This code is lifted wholesale from the TLTransitionAnimator class
         UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         
+        CGRect startFrame = [[transitionContext containerView] bounds];
         CGRect endFrame = [[transitionContext containerView] bounds];
+        
+        self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:transitionContext.containerView];
+        self.animator.delegate = self;
         
         if (self.presenting) {
             // The order of these matters – determines the view hierarchy order.
             [transitionContext.containerView addSubview:fromViewController.view];
             [transitionContext.containerView addSubview:toViewController.view];
             
-            CGRect startFrame = endFrame;
             startFrame.origin.x -= CGRectGetWidth([[transitionContext containerView] bounds]);
             
             toViewController.view.frame = startFrame;
             
-            [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-                toViewController.view.frame = endFrame;
-            } completion:^(BOOL finished) {
-                [transitionContext completeTransition:YES];
-            }];
+            self.collisionBehaviour = [[UICollisionBehavior alloc] initWithItems:@[toViewController.view]];
+            [self.collisionBehaviour setTranslatesReferenceBoundsIntoBoundaryWithInsets:UIEdgeInsetsMake(0, -CGRectGetWidth(transitionContext.containerView.bounds), 0, 0)];
+            
+            self.gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[toViewController.view]];
+            [self.gravityBehaviour setXComponent:5 yComponent:0];
+            
+            UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[toViewController.view]];
+            itemBehaviour.elasticity = 0.5f;
+            [self.animator addBehavior:itemBehaviour];
         }
         else {
             [transitionContext.containerView addSubview:toViewController.view];
             [transitionContext.containerView addSubview:fromViewController.view];
             
-            endFrame.origin.x -= CGRectGetWidth([[transitionContext containerView] bounds]);
+            endFrame.origin.x -= CGRectGetWidth(self.transitionContext.containerView.bounds);
             
-            [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-                fromViewController.view.frame = endFrame;
-            } completion:^(BOOL finished) {
-                [transitionContext completeTransition:YES];
-            }];
+            fromViewController.view.frame = startFrame;
+            
+            self.collisionBehaviour = [[UICollisionBehavior alloc] initWithItems:@[fromViewController.view]];
+            [self.collisionBehaviour setTranslatesReferenceBoundsIntoBoundaryWithInsets:UIEdgeInsetsMake(0, -CGRectGetWidth(transitionContext.containerView.bounds), 0, 0)];
+            
+            self.gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[fromViewController.view]];
+            [self.gravityBehaviour setXComponent:-5 yComponent:0];
+            
+            UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[fromViewController.view]];
+            itemBehaviour.elasticity = 0.5f;
+            [self.animator addBehavior:itemBehaviour];
         }
+        
+        [self.animator addBehavior:self.collisionBehaviour];
+        [self.animator addBehavior:self.gravityBehaviour];
+        
+        // We need to *guarantee* that our transition completes at some point.
+        double delayInSeconds = [self transitionDuration:self.transitionContext];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            // If we still have an animator, we're still animating, so we need to complete our transition immediately. 
+            if (self.animator) {
+                BOOL presenting = self.presenting;
+                
+                [self.transitionContext completeTransition:YES];
+                
+                if (presenting) {
+                    toViewController.view.frame = endFrame;
+                }
+                else {
+                    fromViewController.view.frame = endFrame;
+                }
+            }
+        });
     }
 }
 
@@ -269,6 +322,12 @@
             [transitionContext completeTransition:NO];
         }];
     }
+}
+
+#pragma mark - UIDynamicAnimatorDelegate Methods
+
+- (void)dynamicAnimatorDidPause:(UIDynamicAnimator*)animator {
+    [self.transitionContext completeTransition:self.completing];
 }
 
 @end

@@ -15,7 +15,14 @@
 #import "TLMenuInteractor.h"
 #import "TLMenuDynamicInteractor.h"
 
+
+
+
 #define USE_UIKIT_DYNAMICS      YES
+
+
+
+
 
 @interface TLMasterViewController () <UIViewControllerTransitioningDelegate>
 {
@@ -42,10 +49,10 @@
     self.navigationItem.rightBarButtonItem = addButton;
     
     if (USE_UIKIT_DYNAMICS) {
-        self.menuInteractor = [[TLMenuInteractor alloc] initWithParentViewController:self];
+        self.menuInteractor = [[TLMenuDynamicInteractor alloc] initWithParentViewController:self];
     }
     else {
-        self.menuInteractor = [[TLMenuDynamicInteractor alloc] initWithParentViewController:self];
+        self.menuInteractor = [[TLMenuInteractor alloc] initWithParentViewController:self];
     }
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.menuInteractor action:@selector(presentMenu)];
