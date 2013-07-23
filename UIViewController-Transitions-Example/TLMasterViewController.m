@@ -13,14 +13,16 @@
 
 #import "TLTransitionAnimator.h"
 #import "TLMenuInteractor.h"
+#import "TLMenuDynamicInteractor.h"
 
+#define USE_UIKIT_DYNAMICS      YES
 
 @interface TLMasterViewController () <UIViewControllerTransitioningDelegate>
 {
     NSMutableArray *_objects;
 }
 
-@property (nonatomic, strong) TLMenuInteractor *menuInteractor;
+@property (nonatomic, strong) id<TLMenuViewControllerPanTarget> menuInteractor;
 
 @end
 
@@ -39,7 +41,12 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
-    self.menuInteractor = [[TLMenuInteractor alloc] initWithParentViewController:self];
+    if (USE_UIKIT_DYNAMICS) {
+        self.menuInteractor = [[TLMenuInteractor alloc] initWithParentViewController:self];
+    }
+    else {
+        self.menuInteractor = [[TLMenuDynamicInteractor alloc] initWithParentViewController:self];
+    }
     
     UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain target:self.menuInteractor action:@selector(presentMenu)];
     self.navigationItem.leftBarButtonItem = menuButton;

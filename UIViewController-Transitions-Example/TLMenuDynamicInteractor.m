@@ -1,14 +1,14 @@
 //
-//  TLMenuInteractor.m
+//  TLMenuDynamicInteractor.m
 //  UIViewController-Transitions-Example
 //
-//  Created by Ash Furrow on 2013-07-18.
+//  Created by Ash Furrow on 2013-07-23.
 //  Copyright (c) 2013 Teehan+Lax. All rights reserved.
 //
 
-#import "TLMenuInteractor.h"
+#import "TLMenuDynamicInteractor.h"
 
-@interface TLMenuInteractor () <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate, UIViewControllerInteractiveTransitioning>
+@interface TLMenuDynamicInteractor () <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate, UIViewControllerInteractiveTransitioning>
 
 @property (nonatomic, assign, getter = isInteractive) BOOL interactive;
 @property (nonatomic, assign, getter = isPresenting) BOOL presenting;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation TLMenuInteractor
+@implementation TLMenuDynamicInteractor
 
 #pragma mark - Public Methods
 

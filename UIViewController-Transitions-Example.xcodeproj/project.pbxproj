@@ -10,6 +10,7 @@
 		5E6543B2179DAD4100ED0C76 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6543B1179DAD4100ED0C76 /* Reveal.framework */; };
 		5E6543B4179DAD6400ED0C76 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6543B3179DAD6400ED0C76 /* CFNetwork.framework */; };
 		5E6543B6179DAD6900ED0C76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6543B5179DAD6900ED0C76 /* QuartzCore.framework */; };
+		5E6543BB179EB77000ED0C76 /* TLMenuDynamicInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6543BA179EB77000ED0C76 /* TLMenuDynamicInteractor.m */; };
 		5E6752691798570100601F42 /* TLTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6752681798570100601F42 /* TLTransitionAnimator.m */; };
 		5E67527317985B6D00601F42 /* TLMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E67527217985B6D00601F42 /* TLMenuViewController.m */; };
 		5E67527617985FE400601F42 /* TLMenuInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E67527517985FE400601F42 /* TLMenuInteractor.m */; };
@@ -44,6 +45,8 @@
 		5E6543B1179DAD4100ED0C76 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		5E6543B3179DAD6400ED0C76 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5E6543B5179DAD6900ED0C76 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5E6543B9179EB77000ED0C76 /* TLMenuDynamicInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMenuDynamicInteractor.h; sourceTree = "<group>"; };
+		5E6543BA179EB77000ED0C76 /* TLMenuDynamicInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMenuDynamicInteractor.m; sourceTree = "<group>"; };
 		5E6752671798570100601F42 /* TLTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTransitionAnimator.h; sourceTree = "<group>"; };
 		5E6752681798570100601F42 /* TLTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTransitionAnimator.m; sourceTree = "<group>"; };
 		5E67527117985B6D00601F42 /* TLMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMenuViewController.h; sourceTree = "<group>"; };
@@ -120,6 +123,8 @@
 				5E6752681798570100601F42 /* TLTransitionAnimator.m */,
 				5E67527417985FE400601F42 /* TLMenuInteractor.h */,
 				5E67527517985FE400601F42 /* TLMenuInteractor.m */,
+				5E6543B9179EB77000ED0C76 /* TLMenuDynamicInteractor.h */,
+				5E6543BA179EB77000ED0C76 /* TLMenuDynamicInteractor.m */,
 			);
 			name = "UIViewController Presentation Extensions";
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E8B4B851790454A006BFAB2 /* TLMasterViewController.m in Sources */,
+				5E6543BB179EB77000ED0C76 /* TLMenuDynamicInteractor.m in Sources */,
 				5E6752691798570100601F42 /* TLTransitionAnimator.m in Sources */,
 				5E8B4B881790454A006BFAB2 /* TLDetailViewController.m in Sources */,
 				5E8B4B7F1790454A006BFAB2 /* TLAppDelegate.m in Sources */,

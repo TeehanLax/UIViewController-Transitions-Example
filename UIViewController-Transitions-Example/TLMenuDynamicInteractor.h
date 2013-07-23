@@ -1,15 +1,15 @@
 //
-//  TLMenuInteractor.h
+//  TLMenuDynamicInteractor.h
 //  UIViewController-Transitions-Example
 //
-//  Created by Ash Furrow on 2013-07-18.
+//  Created by Ash Furrow on 2013-07-23.
 //  Copyright (c) 2013 Teehan+Lax. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "TLMenuViewController.h"
 
-@interface TLMenuInteractor : UIPercentDrivenInteractiveTransition <TLMenuViewControllerPanTarget>
+@interface TLMenuDynamicInteractor : UIPercentDrivenInteractiveTransition <TLMenuViewControllerPanTarget>
 
 -(id)initWithParentViewController:(UIViewController *)viewController;
 

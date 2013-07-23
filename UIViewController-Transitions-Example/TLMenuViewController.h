@@ -18,8 +18,8 @@
 
 @interface TLMenuViewController : UIViewController
 
--(id)initWithMenuInteractor:(id<TLMenuViewControllerPanTarget>)menuInteractor;
+-(id)initWithPanTarget:(id<TLMenuViewControllerPanTarget>)panTarget;
 
-@property (nonatomic, readonly) id<TLMenuViewControllerPanTarget> menuInteractor;
+@property (nonatomic, readonly) id<TLMenuViewControllerPanTarget> panTarget;
 
 @end

@@ -16,11 +16,11 @@
 
 @implementation TLMenuViewController
 
--(id)initWithMenuInteractor:(id<TLMenuViewControllerPanTarget>)menuInteractor
+-(id)initWithPanTarget:(id<TLMenuViewControllerPanTarget>)panTarget
 {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
-        _menuInteractor = menuInteractor;
+        _panTarget = panTarget;
     }
     return self;
 }
@@ -41,7 +41,7 @@
     doneButton.center = self.view.center;
     [self.view addSubview:doneButton];
     
-    UIScreenEdgePanGestureRecognizer *gestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self.menuInteractor action:@selector(userDidPan:)];
+    UIScreenEdgePanGestureRecognizer *gestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self.panTarget action:@selector(userDidPan:)];
     gestureRecognizer.edges = UIRectEdgeRight;
     [self.view addGestureRecognizer:gestureRecognizer];
 }
