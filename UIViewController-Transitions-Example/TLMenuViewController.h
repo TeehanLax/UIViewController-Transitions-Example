@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@class TLMenuInteractor;
+@class TLMenuViewController;
+
+@protocol TLMenuViewControllerPanTarget <NSObject>
+
+-(void)userDidPan:(UIScreenEdgePanGestureRecognizer *)gestureRecognizer;
+
+@end
 
 @interface TLMenuViewController : UIViewController
 
--(id)initWithMenuInteractor:(TLMenuInteractor *)menuInteractor;
+-(id)initWithMenuInteractor:(id<TLMenuViewControllerPanTarget>)menuInteractor;
 
-@property (nonatomic, readonly) TLMenuInteractor *menuInteractor;
+@property (nonatomic, readonly) id<TLMenuViewControllerPanTarget> menuInteractor;
 
 @end

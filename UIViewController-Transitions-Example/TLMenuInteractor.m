@@ -7,9 +7,8 @@
 //
 
 #import "TLMenuInteractor.h"
-#import "TLMenuViewController.h"
 
-@interface TLMenuInteractor ()
+@interface TLMenuInteractor () <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate, UIViewControllerInteractiveTransitioning>
 
 @property (nonatomic, assign, getter = isInteractive) BOOL interactive;
 @property (nonatomic, assign, getter = isPresenting) BOOL presenting;

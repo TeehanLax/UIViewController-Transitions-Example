@@ -16,7 +16,7 @@
 
 @implementation TLMenuViewController
 
--(id)initWithMenuInteractor:(TLMenuInteractor *)menuInteractor
+-(id)initWithMenuInteractor:(id<TLMenuViewControllerPanTarget>)menuInteractor
 {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TLMenuViewController.h"
 
-@interface TLMenuInteractor : UIPercentDrivenInteractiveTransition <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate, UIViewControllerInteractiveTransitioning>
+@interface TLMenuInteractor : UIPercentDrivenInteractiveTransition <TLMenuViewControllerPanTarget>
 
 -(id)initWithParentViewController:(UIViewController *)viewController;
 
