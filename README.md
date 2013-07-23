@@ -14,6 +14,10 @@ There are three custom transitions:
 
 Tapping a row in the table view will present a new view controller using the `TLTransitionAnimator`. Swiping from the left edge of the screen will present an orange menu view controller. Change the `USE_UIKIT_DYNAMICS` macro in `TLMasterViewController.m` to switch between `TLMenuInteractor` and `TLMenuDynamicInteractor`. 
 
+![Faux Modal](http://f.cl.ly/items/2p2Y0n252l0c2z2b3G2D/Faux-Modal.gif)
+
+![Menu](http://f.cl.ly/items/200T2b1O0A1D2u3k2W3h/Menu.gif)
+
 License
 ----------------
 
