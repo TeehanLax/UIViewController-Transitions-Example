@@ -10,6 +10,7 @@
 
 @class TLMenuViewController;
 
+// This protocol is only to silence the compiler since we're using one of two different classes.
 @protocol TLMenuViewControllerPanTarget <NSObject>
 
 -(void)userDidPan:(UIScreenEdgePanGestureRecognizer *)gestureRecognizer;
