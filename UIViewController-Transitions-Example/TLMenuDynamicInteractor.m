@@ -230,7 +230,7 @@
             [collisionBehaviour setTranslatesReferenceBoundsIntoBoundaryWithInsets:UIEdgeInsetsMake(0, -CGRectGetWidth(transitionContext.containerView.bounds), 0, 0)];
             
             UIGravityBehavior *gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[toViewController.view]];
-            gravityBehaviour.gravityDirection = CGSizeMake(5.0f, 0.0f);
+            gravityBehaviour.gravityDirection = CGVectorMake(5.0f, 0.0f);
             
             UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[toViewController.view]];
             itemBehaviour.elasticity = 0.5f;
@@ -251,7 +251,7 @@
             [collisionBehaviour setTranslatesReferenceBoundsIntoBoundaryWithInsets:UIEdgeInsetsMake(0, -CGRectGetWidth(transitionContext.containerView.bounds), 0, 0)];
             
             UIGravityBehavior *gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[fromViewController.view]];
-            gravityBehaviour.gravityDirection = CGSizeMake(-5.0f, 0.0f);
+            gravityBehaviour.gravityDirection = CGVectorMake(-5.0f, 0.0f);
             
             UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[fromViewController.view]];
             itemBehaviour.elasticity = 0.5f;
@@ -355,10 +355,10 @@
     }
     
     UIGravityBehavior *gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[dynamicItem]];
-    gravityBehaviour.gravityDirection = CGSizeMake(gravityXComponent, 0.0f);
+    gravityBehaviour.gravityDirection = CGVectorMake(gravityXComponent, 0.0f);
     
     UIPushBehavior *pushBehaviour = [[UIPushBehavior alloc] initWithItems:@[dynamicItem] mode:UIPushBehaviorModeInstantaneous];
-    pushBehaviour.pushDirection = CGSizeMake(self.lastKnownVelocity.x / 10.0f, 0.0f);
+    pushBehaviour.pushDirection = CGVectorMake(self.lastKnownVelocity.x / 10.0f, 0.0f);
     
     [self.animator addBehavior:gravityBehaviour];
     [self.animator addBehavior:pushBehaviour];
@@ -393,10 +393,10 @@
     }
     
     UIGravityBehavior *gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[dynamicItem]];
-    gravityBehaviour.gravityDirection = CGSizeMake(gravityXComponent, 0.0f);
+    gravityBehaviour.gravityDirection = CGVectorMake(gravityXComponent, 0.0f);
     
     UIPushBehavior *pushBehaviour = [[UIPushBehavior alloc] initWithItems:@[dynamicItem] mode:UIPushBehaviorModeInstantaneous];
-    pushBehaviour.pushDirection = CGSizeMake(self.lastKnownVelocity.x / 10.0f, 0.0f);
+    pushBehaviour.pushDirection = CGVectorMake(self.lastKnownVelocity.x / 10.0f, 0.0f);
     
     [self.animator addBehavior:gravityBehaviour];
     [self.animator addBehavior:pushBehaviour];
