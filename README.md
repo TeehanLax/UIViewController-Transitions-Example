@@ -1,7 +1,7 @@
 UIViewController-Transitions-Example
 ====================================
 
-An example of how to use the new iOS 7 APIs to create custom view controller transitions. 
+An example of how to use the new iOS 7 APIs to create custom view controller transitions. For more details, [read the tutorial](http://www.teehanlax.com/blog/custom-uiviewcontroller-transitions/).
 
 How to Use
 ----------------
